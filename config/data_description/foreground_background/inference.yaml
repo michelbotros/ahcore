@@ -1,0 +1,30 @@
+_target_: ahcore.utils.data.DataDescription
+data_dir: ${oc.env:DATA_DIR}
+annotations_dir: ${oc.env:ANNOTATIONS_DIR} # specify in .env
+manifest_database_uri: sqlite:///${oc.env:MANIFEST_PATH}
+manifest_name: "first5"
+split_version: "v1"
+use_roi: False
+apply_color_profile: False
+# Eg. 512 x 512 is: tile_size 726 x 726 and tile_overlap 107 x 107
+# Tiles are cropped in the transforms downstream, to ensure the patch is completely visible, they are extracted
+# slightly larger (sqrt 2) with sufficient overlap so we have a 512 stride.
+training_grid:
+  mpp: 1.0
+  tile_overlap: [0, 0]
+  tile_size: [512, 512]
+inference_grid:
+  mpp: 1.0
+  tile_size: [512, 512]
+  tile_overlap: [256, 256]
+
+num_classes: 2
+use_class_weights: false  # Use the class weights in the loss
+remap_labels:
+  specimen: specimen
+
+index_map:
+  specimen: 1
+
+color_map:
+  1: "yellow"

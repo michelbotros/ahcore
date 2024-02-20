@@ -128,8 +128,9 @@ def populate_from_annotated_tcga(
 
 
 if __name__ == "__main__":
-    annotation_folder = Path("tissue_subtypes/v20230228_debug/")
+    print('Hi')
+
     image_folder = Path("/data/groups/aiforoncology/archive/pathology/TCGA/images/")
-    path_to_mapping = Path("/data/groups/aiforoncology/archive/pathology/TCGA/identifier_mapping.json")
-    with open_db("sqlite:///manifest.db") as session:
-        populate_from_annotated_tcga(session, image_folder, annotation_folder, path_to_mapping, predict=True)
+    # path_to_mapping = Path("/data/groups/aiforoncology/archive/pathology/TCGA/identifier_mapping.json")
+    # with open_db("sqlite:///manifest.db") as session:
+    #     populate_from_annotated_tcga(session, image_folder, annotation_folder, path_to_mapping, predict=True)

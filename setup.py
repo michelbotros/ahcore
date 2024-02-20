@@ -34,8 +34,8 @@ install_requires = [
     "dlup>=0.3.34",
     "kornia>=0.7.0",
     "h5py>=3.8.0",
-    "monai[einops]==1.2.0",
-    "imagecodecs==2023.9.4",
+    "monai[einops]==1.2.0"
+#    "imagecodecs==2023.9.4",
 ]
 
 

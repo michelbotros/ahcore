@@ -9,5 +9,5 @@
 # Example for datamodule:
 
 datamodule:
-  num_workers: 1
-  batch_size: 16
+  num_workers: 8
+  batch_size: 512

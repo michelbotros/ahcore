@@ -5,8 +5,8 @@ defaults:
   - model_summary.yaml
   - rich_progress_bar.yaml
   - write_h5_callback.yaml
-#  - write_tiff_callback.yaml
-  - compute_wsi_metrics_callback.yaml # This needs to follow write_h5_callback as it requires the outputs
+  - write_tiff_callback.yaml
+#  - compute_wsi_metrics_callback.yaml # This needs to follow write_h5_callback as it requires the outputs
   - _self_
 
 learningrate_monitor:
@@ -32,8 +32,8 @@ model_summary:
 write_h5_callback:
   max_queue_size: 100
   max_concurrent_writers: 4
-  normalization_type: "logits" # Make sure to use the appropriate normalization for your use case.
-  precision: "float32" # Make sure to use the appropriate precision for your use case.
+  normalization_type: "sigmoid" # Make sure to use the appropriate normalization for your use case.
+  precision: "uint8" # Make sure to use the appropriate precision for your use case.
 
 write_tiff_callback:
   max_concurrent_writers: 4

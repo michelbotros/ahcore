@@ -3,13 +3,13 @@
 # specify here default inference configuration
 defaults:
   - _self_  # Means that any variables defined here will be overridden by possible subconfigs below
-  - data_description: ???
+  - data_description: foreground_background/inference.yaml
   - datamodule: dataset.yaml
-  - pre_transform: ???
-  - augmentations: ???
+  - pre_transform: segmentation.yaml
+  - augmentations: segmentation.yaml
   - task: segmentation_inference.yaml
   - logger: null
-  - lit_module: ???
+  - lit_module: monai_segmentation/unet.yaml
   - callbacks: inference.yaml
   - trainer: default.yaml
   - hydra: default.yaml  # if we want to setup different hydra logging dirs / color log
@@ -28,7 +28,7 @@ defaults:
   - optional local: segmentation.yaml
 
 # checkpoint path
-ckpt_path: ???
+ckpt_path: /home/mbotros/tmp/tissue_background.ckpt
 
 # task name -- used for output directory path (or name it to a specific experiment if you'd like)
 task_name: "inference"

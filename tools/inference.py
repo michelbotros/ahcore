@@ -7,7 +7,7 @@ dotenv.load_dotenv(override=True)
 from ahcore.hydra_plugins import register_additional_config_search_path  # noqa: E402
 
 register_additional_config_search_path()
-
+from shapely.plotting import plot_polygon
 
 @hydra.main(
     config_path="../config",

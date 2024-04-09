@@ -21,7 +21,7 @@ from ahcore.utils.database_models import (
 from ahcore.utils.manifest import open_db
 
 
-def get_patient_code_from_lans_filepath(lans_filepath: str) -> str:
+def get_patient_code_from_lans_filepath(lans_filepath) -> str:
     return str(lans_filepath).split('/')[-1][:7]
 
 
@@ -29,8 +29,8 @@ def populate_from_folder(
     session,
     image_folder: Path
 ):
-
-    manifest = Manifest(name="first5")
+    print('Creating manifest file!')
+    manifest = Manifest(name="first_500_he")
     session.add(manifest)
     session.flush()
 
@@ -38,11 +38,10 @@ def populate_from_folder(
     session.add(split_definition)
     session.flush()
 
-    file_paths = sorted(image_folder.rglob("*HE.tiff"))[:5]
-    print('Found {} tiff files.'.format(len(file_paths)))
-    print(file_paths)
+    tiff_files = [f for f in sorted(image_folder.rglob("*.tiff")) if 'HE' in str(f)][:500]
+    print('Found {} tiff files!'.format(len(tiff_files)))
 
-    for file_path in file_paths:
+    for file_path in tiff_files:
         patient_code = get_patient_code_from_lans_filepath(file_path)
 
         # Only add patient if it doesn't exist
@@ -94,10 +93,13 @@ def populate_from_folder(
         )
         session.add(image_label)
         session.commit()
-    print('Created manifest file at: {}'.format(os.path.join(os.getcwd(), 'manifest.db')))
+
 
 
 if __name__ == "__main__":
+    manifest_file = 'manifest.db'
     image_folder = Path("/data/archief/AMC-data/Barrett/LANS")
-    with open_db("sqlite:///manifest.db") as session:
+    with open_db("sqlite:///{}".format(manifest_file)) as session:
         populate_from_folder(session, image_folder)
+
+    print('Created manifest file at: {}'.format(os.path.join(os.getcwd(), manifest_file)))

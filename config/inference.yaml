@@ -28,7 +28,8 @@ defaults:
   - optional local: segmentation.yaml
 
 # checkpoint path
-ckpt_path: /home/mbotros/tmp/tissue_background.ckpt
+#ckpt_path: /home/mbotros/tmp/tissue_background.ckpt
+ckpt_path: /home/mbotros/tmp/foreground_background_v0.2.0.ckpt
 
 # task name -- used for output directory path (or name it to a specific experiment if you'd like)
 task_name: "inference"

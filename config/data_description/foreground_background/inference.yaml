@@ -2,7 +2,7 @@ _target_: ahcore.utils.data.DataDescription
 data_dir: ${oc.env:DATA_DIR}
 annotations_dir: ${oc.env:ANNOTATIONS_DIR} # specify in .env
 manifest_database_uri: sqlite:///${oc.env:MANIFEST_PATH}
-manifest_name: "first5"
+manifest_name: "first_500_he"
 split_version: "v1"
 use_roi: False
 apply_color_profile: False
@@ -16,7 +16,7 @@ training_grid:
 inference_grid:
   mpp: 1.0
   tile_size: [512, 512]
-  tile_overlap: [256, 256]
+  tile_overlap: [128, 128]
 
 num_classes: 2
 use_class_weights: false  # Use the class weights in the loss
